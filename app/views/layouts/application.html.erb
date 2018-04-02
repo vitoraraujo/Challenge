@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Testapp</title>
+    <%= csrf_meta_tags %>
+    <% if logged_in? %>
+    	<%= link_to "Log out", logout_path, method: :delete %>
+    <% else %>
+    	<%= link_to "Log in", login_path %>
+    <% end %>
+    	
+
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
