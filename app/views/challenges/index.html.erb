@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Context</th>
+      <th>Content</th>
       <th>User</th>
       <th colspan="3"></th>
     </tr>
@@ -14,11 +14,11 @@
   <tbody>
     <% @challenges.each do |challenge| %>
       <tr>
-        <td><%= challenge.context %></td>
+        <td><%= challenge.content %></td>
         <td><%= challenge.user_id %></td>
         <td><%= link_to 'Show', challenge %></td>
         <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
-        <td><%= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= button_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

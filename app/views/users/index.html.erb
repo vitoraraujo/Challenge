@@ -17,8 +17,12 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= link_to 'Show', user %></td>
+        <% if logged_in? %>
+          <% if current_user.admin? || current_user?(@user) %>
+            <td><%= button_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
+          <% end %>
+        <% end %>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= button_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
