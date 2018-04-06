@@ -1,5 +1,21 @@
 <p id="notice"><%= notice %></p>
 
+<% if logged_in? %>
+  <% unless current_user?(@user) %>
+    <% if current_user.following?(@user) %>
+      <%= form_for(current_user.active_relationships.find_by(followed_id: @user.id),
+                   html: { method: :delete }) do |f| %>
+        <%= f.submit "Unfollow", class: "btn" %>
+      <% end %>
+    <% else %>
+      <%= form_for(current_user.active_relationships.build) do |f| %>
+        <div><%= hidden_field_tag :followed_id, @user.id %></div>
+        <%= f.submit "Follow", class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
@@ -10,9 +26,28 @@
   <%= @user.email %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<p>
+  <strong>Challenges:</strong>
+  <%= @user.challenges.count %>
+</p>
+
+<p>
+  <strong> Following: </strong>
+  <a href="<%= following_user_path(@user) %>">
+    <%= @user.following.count %>
+  </a>
+</p>
+
+<p>
+  <strong> Followers: </strong>
+  <a href="<%= followers_user_path(@user) %>">
+    <%= @user.followers.count %>
+  </a>
+</p>
+
 <% if logged_in? %>
 	<% if current_user.admin? || current_user?(@user) %>
+	<%= link_to 'Edit', edit_user_path(@user) %> |
 		<%= button_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %></td> |
 	<% end %>
 <% end %>

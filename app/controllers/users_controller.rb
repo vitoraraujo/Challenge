@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, only: [:edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update, :destroy]
-  before_action :admin_user,     only: [:edit, :update, :destroy]
   protect_from_forgery with: :exception
   include SessionsHelper
 
@@ -16,6 +15,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find(params[:id])
   end
 
   # GET /users/new
@@ -62,6 +62,36 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def following
+    @title = "Following"
+    @user  = User.find(params[:id])
+    @users = @user.following
+    #render 'show_follow' Fazer a tela que lista os seguidos pelo usuário
+  end
+
+   def followers
+    @title = "Followers"
+    @user  = User.find(params[:id])
+    @users = @user.followers
+    #render 'show_follow' Fazer a tela que lista os que seguem o usuário
+  end
+
+  # Follows a user.
+  def follow(other_user)
+    following << other_user
+  end
+
+  # Unfollows a user.
+  def unfollow(other_user)
+    following.delete(other_user)
+  end
+
+  # Returns true if the current user is following the other user.
+  def following?(other_user)
+    following.include?(other_user)
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -71,10 +101,6 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
-    end
-
-    def admin_user
-      redirect_to(root_url) unless current_user.admin?
     end
 
     def logged_in_user
