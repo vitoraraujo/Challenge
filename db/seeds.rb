@@ -13,8 +13,8 @@ User.create!(name: "Vitor Araujo", email: "vitoraraujow@gmail.com", password: "a
                password_confirmation: password)
 end
 
-users = User.order(:created_at).take(6)
-50.times do
+users = User.order(:created_at).take(25)
+10.times do
   content = Faker::Lorem.sentence(5)
   users.each { |user| user.challenges.create!(content: content) }
 end

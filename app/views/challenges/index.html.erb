@@ -2,7 +2,9 @@
 
 <h1>Challenges</h1>
 
-<table>
+<%= link_to 'New Challenge', new_challenge_path %>
+
+<table align="center">
   <thead>
     <tr>
       <th>Content</th>
@@ -15,10 +17,9 @@
     <% @challenges.each do |challenge| %>
       <tr>
         <td><%= challenge.content %></td>
-        <td><%= challenge.user_id %></td>
+        <td><%= challenge.user.name %></td>
         <td><%= link_to 'Show', challenge %></td>
-        <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
-        <td><%= button_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +27,3 @@
 
 <br>
 
-<%= link_to 'New Challenge', new_challenge_path %>

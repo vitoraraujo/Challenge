@@ -16,6 +16,15 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @challenges = @user.challenges
+  end
+
+  def feed
+    if logged_in?
+      @feed_items = current_user.feed
+    else
+      redirect_to login_url
+    end
   end
 
   # GET /users/new
@@ -35,7 +44,6 @@ class UsersController < ApplicationController
     
     if @user.save
       log_in @user
-      flash[:success] = "Welcome to the Sample App!"
       redirect_to @user
     else
       render :new 
@@ -65,15 +73,15 @@ class UsersController < ApplicationController
   def following
     @title = "Following"
     @user  = User.find(params[:id])
-    @users = @user.following
-    #render 'show_follow' Fazer a tela que lista os seguidos pelo usuário
+    @following = @user.following
+    render 'following' #Fazer a tela que lista os seguidos pelo usuário
   end
 
    def followers
     @title = "Followers"
     @user  = User.find(params[:id])
-    @users = @user.followers
-    #render 'show_follow' Fazer a tela que lista os que seguem o usuário
+    @followers = @user.followers
+    render 'followers' #Fazer a tela que lista os que seguem o usuário
   end
 
   # Follows a user.
@@ -90,7 +98,6 @@ class UsersController < ApplicationController
   def following?(other_user)
     following.include?(other_user)
   end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.

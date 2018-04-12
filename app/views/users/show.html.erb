@@ -1,5 +1,15 @@
 <p id="notice"><%= notice %></p>
 
+<% provide(:title, @user.name) %>
+
+<div style="text-align: center">
+  <%= gravatar_for @user %>
+<h1>
+  <%= @user.name %>
+</h1>
+</div>
+<br>
+<div>
 <% if logged_in? %>
   <% unless current_user?(@user) %>
     <% if current_user.following?(@user) %>
@@ -13,42 +23,52 @@
         <%= f.submit "Follow", class: "btn btn-primary" %>
       <% end %>
     <% end %>
+  <% else %>
+      <%= link_to "Settings" %>
   <% end %>
 <% end %>
 
+<br>
+<p> 
+  <h3>Challenges:</h3>
+</p>
 <p>
-  <strong>Name:</strong>
-  <%= @user.name %>
+  <strong>Done:</strong>
+    0
+</p>
+<p>
+  <strong>Writen:</strong>
+  
+  <%= link_to @user.challenges.count  %>
 </p>
 
 <p>
-  <strong>Email:</strong>
-  <%= @user.email %>
+<h3> Social: </h3>
 </p>
-
 <p>
-  <strong>Challenges:</strong>
-  <%= @user.challenges.count %>
+  <strong> Followers: </strong>
+    <%= link_to @user.followers.count, followers_user_path(@user) %>
 </p>
 
 <p>
   <strong> Following: </strong>
-  <a href="<%= following_user_path(@user) %>">
-    <%= @user.following.count %>
-  </a>
+  <%= link_to @user.following.count, following_user_path(@user) %>
 </p>
 
-<p>
-  <strong> Followers: </strong>
-  <a href="<%= followers_user_path(@user) %>">
-    <%= @user.followers.count %>
-  </a>
-</p>
+ <div class="col-md-8">
+    <% if @user.challenges.any? %>
+      <h3>Challenges (<%= @user.challenges.count %>)</h3>
+        <%= render @challenges %>
+    <% end %>
+  </div>
 
-<% if logged_in? %>
-	<% if current_user.admin? || current_user?(@user) %>
-	<%= link_to 'Edit', edit_user_path(@user) %> |
-		<%= button_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %></td> |
-	<% end %>
-<% end %>
-<%= link_to 'Back', users_path %>
+
+
+  <% if logged_in? %>
+  	<% if current_user.admin? || current_user?(@user) %>
+  	  <td><%= link_to 'Edit', edit_user_path(@user) %></td>
+  		<td><%= button_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
+  	<% end %>
+  <% end %>
+  <%= link_to 'Back', users_path %>
+</div>

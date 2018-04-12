@@ -1,0 +1,11 @@
+<h1> Feed </h1>
+<table align="center">
+	<%= link_to 'New Challenge', new_challenge_path %>
+	<br>
+	<% if @feed_items.any? %>
+		<%= render @feed_items %>
+	<% else %>
+		<h5> Nenhum desafio... </h5>
+	<% end %>
+</table>
+

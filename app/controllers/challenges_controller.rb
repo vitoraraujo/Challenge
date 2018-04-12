@@ -18,33 +18,15 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.new
   end
 
-  # GET /challenges/1/edit
-  def edit
-  end
-
   # POST /challenges
   # POST /challenges.json
   def create
     @challenge = Challenge.new(challenge_params)
-
-    respond_to do |format|
-      if @challenge.save
-        format.html { redirect_to @challenge, notice: 'Challenge was successfully created.' }
-        format.json { render :show, status: :created, location: @challenge }
-      else
-        format.html { render :new }
-        format.json { render json: @challenge.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /challenges/1
-  # PATCH/PUT /challenges/1.json
-  def update
-    if @challenge.update(challenge_params)
-      
+    @challenge.user = current_user
+    if @challenge.save
+      redirect_to feed_path
     else
-
+      render :new
     end
   end
 
@@ -63,7 +45,7 @@ class ChallengesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def challenge_params
-      params.require(:challenge).permit(:content, :user_id)
+      params.require(:challenge).permit(:content)
     end
 
     def correct_user

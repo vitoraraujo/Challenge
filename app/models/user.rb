@@ -16,6 +16,9 @@ class User < ApplicationRecord
 	has_secure_password
 
 	def feed
+	    following_ids = "SELECT followed_id FROM relationships WHERE  follower_id = :user_id" 
+	    
+	    Challenge.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id)
 
 	end
 

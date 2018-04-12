@@ -1,0 +1,7 @@
+<table align="center">
+	<% @followers.each do |follower| %>
+	    <tr>
+	    <td><%= link_to follower.name, follower %></td>
+	   </tr>
+	<% end %>
+</table>

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '/feed', to: 'users#feed'
+
   get    'sessions/new'
   get    '/signup',  to: 'users#new'
   get    '/login',   to: 'sessions#new'
@@ -17,5 +19,5 @@ Rails.application.routes.draw do
   resources :users
   resources :relationships,       only: [:create, :destroy]
   
-  root 'users#index'
+  root 'users#feed'
 end
