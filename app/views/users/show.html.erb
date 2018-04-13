@@ -2,12 +2,14 @@
 
 <% provide(:title, @user.name) %>
 
-<div style="text-align: center">
+<section>
   <%= gravatar_for @user %>
-<h1>
-  <%= @user.name %>
-</h1>
-</div>
+
+  <span class="user-name"><%= @user.name %></span>
+
+</section>
+
+
 <br>
 <div>
 <% if logged_in? %>
@@ -30,7 +32,7 @@
 
 <br>
 <p> 
-  <h3>Challenges:</h3>
+  <h4>Challenges:</h4>
 </p>
 <p>
   <strong>Done:</strong>
@@ -43,7 +45,7 @@
 </p>
 
 <p>
-<h3> Social: </h3>
+<h4> Social: </h4>
 </p>
 <p>
   <strong> Followers: </strong>

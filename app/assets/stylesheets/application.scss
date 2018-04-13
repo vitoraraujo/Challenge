@@ -60,7 +60,7 @@ header {
   width: 100%;
 }
 .header1 {
-  background: orange;
+  background: rgba(255,39,0,1.00);
 }
 .header2{
   background: white;
@@ -83,3 +83,10 @@ input, textarea, select, .uneditable-input {
 input {
   height: auto !important;
 }
+
+/* User */
+
+.user-name {
+  margin-left: 5%;
+  font-size: large;
+} 
