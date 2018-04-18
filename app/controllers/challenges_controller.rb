@@ -21,8 +21,7 @@ class ChallengesController < ApplicationController
   # POST /challenges
   # POST /challenges.json
   def create
-    @challenge = Challenge.new(challenge_params)
-    @challenge.user = current_user
+    @challenge = current_user.challenges.build(challenge_params)
     if @challenge.save
       redirect_to feed_path
     else

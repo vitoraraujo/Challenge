@@ -15,8 +15,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :challenges do
+    resources :comments, only: [:create, :destroy]
+end
+
   resources :challenges
   resources :users
+  resources :comments
   resources :relationships,       only: [:create, :destroy]
   
   root 'users#feed'

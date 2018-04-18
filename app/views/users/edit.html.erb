@@ -17,6 +17,6 @@
   <%= f.submit "Save changes" %>    
 <% end %>
 
-
-<%= link_to 'Show', @user %> |
+<div align="center"><%= link_to 'Show', @user %></div>
+<%= button_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
 <%= link_to 'Back', users_path %>

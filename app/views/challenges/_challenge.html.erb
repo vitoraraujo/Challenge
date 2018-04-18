@@ -1,8 +1,12 @@
 <p style="border: 1px solid black; border-color: black; padding: 5px;" >
-  <%= link_to gravatar_for(challenge.user, size: 50), challenge.user %>
+  <%= link_to gravatar_for(challenge.user, size: 30), challenge.user %>
   <span><%= link_to challenge.user.name, challenge.user %></span>
+  <br>
   <span><%= challenge.content %></span>
-  <span style="font-size: small">
+  <br>
+  <span><%= link_to pluralize(challenge.comments.count, "comment"), challenge %>
+  <br>
+  <span style="font-size: 10px">
     Posted <%= time_ago_in_words(challenge.created_at) %> ago.
   </span>
 </p>

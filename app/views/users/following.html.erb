@@ -1,8 +1,7 @@
 <table align="center">
 	<% @following.each do |following| %>
 	    <tr>
-	    <td><%= following.name %></td>
-	    <td><%= link_to 'Show', following %></td>
+	    <td><%= link_to following.name , following %></td>
 	   </tr>
 	<% end %>
 </table>

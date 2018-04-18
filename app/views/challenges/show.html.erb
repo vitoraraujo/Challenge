@@ -1,14 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @challenge.content %>
-</p>
 
-<p>
-  <strong>User:</strong>
-  <%= @challenge.user.name %>
-</p>
+<h1><%= @challenge.content %></h1>
+<p style="float: right;">by:<%= link_to @challenge.user.name, @challenge.user %></p> 
+
+
+
+
+
+<br>
+<h4> Comments: </h4>
+<% if @challenge.comments.any? %>
+	<% @challenge.comments.each do |comment| %>
+		<br>
+		<div style="border: 0.5px solid black; padding: 5px;">
+		<%= link_to comment.user.name, comment.user %>:
+		<%= comment.comment %> 
+		<br>
+	</div>
+	<% end %>
+<% else %>
+	<h5> Nenhum comentário...</h5>
+<% end %>
+<br>
+<% if logged_in? %>
+	<%= form_for ([@challenge, @challenge.comments.build]) do |f| %>
+	    <%= f.text_area :comment %>
+	    <%= f.submit "Comment" %>
+	<% end %>
+<% end %>
 
 <%= button_to 'Destroy', @challenge, method: :delete, data: { confirm: 'Are you sure?' } %>
-<%= link_to 'Back', challenges_path %>
+<%= link_to 'Back', feed_path %>

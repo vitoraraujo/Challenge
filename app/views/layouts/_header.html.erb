@@ -1,19 +1,19 @@
 <header >
-  <div align="center" class="header1">
+    <div align="center" class="header1">
 		<% if logged_in? %>
 		  	<%= link_to "Profile", current_user %> | 
 		  	<%= link_to "Search", users_path %> |
-	  		<%= link_to "Notification" %> 
-	    <% else %>
-	     	<%= link_to "Log in", login_path %>
+	  		<%= link_to "Notification" %>
+	  	<%else%>
+	  		Vido
 	  	<% end %>
+		
 	</div>
+
 	<% if logged_in? %>
 		<div align="center" class="header2">
-			<%= link_to "Direct" %> |
 			<%= link_to "Feed", feed_path %> | 
-			<%= link_to "Feed Global", challenges_path %> |
-			<%= link_to "Feed Hottest" %>
+			<%= link_to "Hottest" %>
 		</div>
 	<% end %>
 </header>

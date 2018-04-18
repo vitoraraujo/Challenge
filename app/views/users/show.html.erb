@@ -11,7 +11,6 @@
 
 
 <br>
-<div>
 <% if logged_in? %>
   <% unless current_user?(@user) %>
     <% if current_user.following?(@user) %>
@@ -26,51 +25,37 @@
       <% end %>
     <% end %>
   <% else %>
-      <%= link_to "Settings" %>
+      <%= link_to "Settings", edit_user_path %>
+      <%= button_to "Logout", logout_path, method: :delete %>
   <% end %>
 <% end %>
 
 <br>
-<p> 
-  <h4>Challenges:</h4>
-</p>
-<p>
-  <strong>Done:</strong>
-    0
-</p>
-<p>
-  <strong>Writen:</strong>
-  
-  <%= link_to @user.challenges.count  %>
-</p>
-
-<p>
-<h4> Social: </h4>
-</p>
+<div style="float: left;">
+    <h4>Challenges: </h4>
+  <p>
+    <strong>Done: </strong>     0
+  </p>
+  <p>
+    <strong>Writen:</strong>
+    <%= link_to @user.challenges.count  %>
+  </p>
+</div>
+<div style="float: right;">
+  <h4> Social: </h4>
 <p>
   <strong> Followers: </strong>
     <%= link_to @user.followers.count, followers_user_path(@user) %>
 </p>
-
 <p>
   <strong> Following: </strong>
   <%= link_to @user.following.count, following_user_path(@user) %>
 </p>
-
- <div class="col-md-8">
-    <% if @user.challenges.any? %>
-      <h3>Challenges (<%= @user.challenges.count %>)</h3>
-        <%= render @challenges %>
-    <% end %>
-  </div>
-
-
-
-  <% if logged_in? %>
-  	<% if current_user.admin? || current_user?(@user) %>
-  	  <td><%= link_to 'Edit', edit_user_path(@user) %></td>
-  		<td><%= button_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %></td> 
-  	<% end %>
-  <% end %>
-  <%= link_to 'Back', users_path %>
 </div>
+<div class="col-md-8">
+<% if @user.challenges.any? %>
+  <h3>Challenges (<%= @user.challenges.count %>)</h3>
+    <%= render @challenges %>
+  <% end %>
+</div>
+

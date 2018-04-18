@@ -6,6 +6,7 @@ class User < ApplicationRecord
 	validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
 	has_many :challenges, dependent: :destroy
+	has_many :comments, dependent: :destroy
 
 	has_many :active_relationships, class_name:  "Relationship", foreign_key: "follower_id", dependent:   :destroy
 	has_many :passive_relationships, class_name:  "Relationship", foreign_key: "followed_id", dependent:   :destroy
@@ -19,7 +20,12 @@ class User < ApplicationRecord
 	    following_ids = "SELECT followed_id FROM relationships WHERE  follower_id = :user_id" 
 	    
 	    Challenge.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id)
+	end
 
+	def global_feed
+		following_ids = "SELECT followed_id FROM relationships WHERE  follower_id = :user_id"
+
+		Challenge.where("user_id Not In (#{following_ids}) AND user_id != :user_id ", user_id: id)
 	end
 
 	# Follows a user.

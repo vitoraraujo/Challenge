@@ -1,10 +1,22 @@
-<h1> Feed </h1>
+<div style="border: 0.5px solid gray; padding: 10px">
+    <%= form_for(@challenge) do |f| %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "New challenge..." %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>
+</div>
+
 <table align="center">
-	<%= link_to 'New Challenge', new_challenge_path %>
 	<br>
 	<% if @feed_items.any? %>
 		<%= render @feed_items %>
-	<% else %>
+	<% end %>
+	<% if @global_feed_items.any? %>
+		<h2>Global:</h2>
+		<%= render @global_feed_items %>
+	<% end %>
+	<% if not @feed_items.any? or @global_feed_items.any? %>
 		<h5> Nenhum desafio... </h5>
 	<% end %>
 </table>
