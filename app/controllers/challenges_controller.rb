@@ -1,5 +1,5 @@
 class ChallengesController < ApplicationController
-  before_action :set_challenge, only: [:show, :edit, :update, :destroy]
+  before_action :set_challenge, only: [:show, :edit, :update, :destroy, :like, :unvote]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /challenges
@@ -36,6 +36,16 @@ class ChallengesController < ApplicationController
     redirect_to(challenges_url)
   end
 
+  def like
+    @challenge.liked_by current_user
+    redirect_to :back
+  end
+
+  def unvote
+    @challenge.unvote_by current_user
+    redirect_to :back
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_challenge

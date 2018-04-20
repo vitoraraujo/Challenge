@@ -4,8 +4,15 @@
   <br>
   <span><%= challenge.content %></span>
   <br>
+  <span><%= challenge.get_upvotes.size %></span>
+  <% if current_user.voted_for? challenge %>
+    <span><%= link_to "Unvote", unvote_challenge_path(challenge), method: :put %></span>
+  <% else %>
+    <span><%= link_to "Like", like_challenge_path(challenge), method: :put %></span>
+  <% end %>
   <span><%= link_to pluralize(challenge.comments.count, "comment"), challenge %>
   <br>
+
   <span style="font-size: 10px">
     Posted <%= time_ago_in_words(challenge.created_at) %> ago.
   </span>

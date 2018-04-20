@@ -15,6 +15,8 @@ class User < ApplicationRecord
 	has_many :followers, through: :passive_relationships
 	
 	has_secure_password
+	
+	acts_as_voter
 
 	def feed
 	    following_ids = "SELECT followed_id FROM relationships WHERE  follower_id = :user_id" 

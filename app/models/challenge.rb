@@ -6,4 +6,5 @@ class Challenge < ApplicationRecord
 	validates :content, presence: true, length: { maximum: 100 }
 	default_scope -> { order(created_at: :desc) }
 
+	acts_as_votable
 end
