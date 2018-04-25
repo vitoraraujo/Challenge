@@ -2,6 +2,11 @@
 
 <% provide(:title, @user.name) %>
 
+<section class="search_bar">
+  <%= image_tag "searchicon.png", class: "col-xs-3 col-md-6" %>
+     <input type="search" name="search" placeholder="Pesquisar usuário.."> 
+</section>
+<br>
 <section>
   <%= gravatar_for @user %>
 
