@@ -4,7 +4,9 @@
 
 <section class="search_bar">
   <%= image_tag "searchicon.png", class: "col-xs-3 col-md-6" %>
-     <input type="search" name="search" placeholder="Pesquisar usuário.."> 
+    <%= form_tag "/users/search" do %>
+      <%= text_field_tag :name %>
+  <% end %>
 </section>
 <br>
 <section>

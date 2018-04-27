@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>List of Users</h1>
-
-<%= render @users %>
+<h1>Usuários:</h1>
+<% if not @users.any? %>
+	<h5>Nenhum usuário...</h5>
+<% else %>
+	<%= render @users %>
+<% end %>
 <br>
 
 <% if not logged_in? %>

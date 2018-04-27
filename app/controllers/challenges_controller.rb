@@ -2,6 +2,11 @@ class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy, :like, :unvote]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
+  def search
+    @challenges = Challenge.where("content LIKE ?", "%#{params[:content]}%")
+    render template: "challenges/index" 
+  end
+
   # GET /challenges
   # GET /challenges.json
   def index

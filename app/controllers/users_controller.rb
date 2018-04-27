@@ -5,6 +5,10 @@ class UsersController < ApplicationController
   protect_from_forgery with: :exception
   include SessionsHelper
 
+  def search
+    @users = User.where("name LIKE ?", "%#{params[:name]}%")
+    render template: 'users/index' 
+  end
 
   # GET /users
   # GET /users.json

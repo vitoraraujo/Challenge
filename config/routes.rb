@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get    '/logout',  to: 'sessions#destroy'
   delete '/logout',  to: 'sessions#destroy'
 
+  post   'challenges/search' => 'challenges#search' 
+  post   'users/search'      => 'users#search' 
+
   resources :users do
     member do
       get :following, :followers
@@ -21,7 +24,7 @@ Rails.application.routes.draw do
 
   resources :challenges do
     member do
-      put 'like' => "challenges#like"
+      put 'like'   => "challenges#like"
       put 'unvote' => "challenges#unvote"
     end
   end
@@ -29,7 +32,7 @@ Rails.application.routes.draw do
   resources :challenges
   resources :users
   resources :comments
-  resources :relationships,       only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
   
   root 'users#feed'
 end
