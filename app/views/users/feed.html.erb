@@ -1,7 +1,11 @@
 <div style="border: 0.5px solid gray; padding: 10px;">
-    <%= form_for(@challenge) do |f| %>
+    <%= form_for :challenge, url: challenges_path, html: {multipart: true} do |f| %>
   <div class="field">
     <%= f.text_area :content, placeholder: "New challenge..." %>
+  	<%= f.label :photo %><br>
+  	<%= f.file_field :photo, class: 'form_control' %>
+  	<%= f.label :movie %><br>
+  	<%= f.file_field :movie, class: 'form_control' %>
   </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>

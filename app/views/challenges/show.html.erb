@@ -2,9 +2,15 @@
 
 
 <h1><%= @challenge.content %></h1>
+
+<% if @challenge.photo? %>
+    <%= image_tag(@challenge.photo, style:"width: 100%") %>
+  <% end %>
+  <% if @challenge.movie? %>
+    <%= video_tag(@challenge.movie, controls: true, type: 'video/mp4' , style:"width:100%") %>
+  <%end %>
+  <br>
 <p style="float: right;">by:<%= link_to @challenge.user.name, @challenge.user %></p> 
-
-
 
 
 

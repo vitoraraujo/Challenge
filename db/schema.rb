@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180419132710) do
+ActiveRecord::Schema.define(version: 20180428180446) do
 
   create_table "challenges", force: :cascade do |t|
     t.string   "content"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string   "movie_file_name"
+    t.string   "movie_content_type"
+    t.integer  "movie_file_size"
+    t.datetime "movie_updated_at"
     t.index ["user_id", "created_at"], name: "index_challenges_on_user_id_and_created_at"
   end
 

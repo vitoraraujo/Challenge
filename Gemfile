@@ -26,6 +26,10 @@ gem 'autoprefixer-rails'
 
 gem 'acts_as_votable', '~> 0.11.1'
 
+gem "paperclip", "~> 6.0.0"
+gem "aws-sdk-s3", '~> 1.9'
+gem 'paperclip-av-transcoder'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
