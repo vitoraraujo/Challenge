@@ -23,16 +23,6 @@ class UsersController < ApplicationController
     @challenges = @user.challenges
   end
 
-  def feed
-    if logged_in?
-      @challenge = current_user.challenges.build
-      @feed_items = current_user.feed
-      @global_feed_items = current_user.global_feed
-    else
-      redirect_to login_url
-    end
-  end
-
   # GET /users/new
   def new
     @user = User.new

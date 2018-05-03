@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  get '/feed', to: 'users#feed'
-
+  get    '/feed',    to: 'challenges#feed'
   get    'sessions/new'
   get    '/signup',  to: 'users#new'
   get    '/login',   to: 'sessions#new'
@@ -34,5 +33,5 @@ Rails.application.routes.draw do
   resources :comments
   resources :relationships, only: [:create, :destroy]
   
-  root 'users#feed'
+  root 'challenges#feed'
 end

@@ -6,11 +6,14 @@
   <br>
   <% if challenge.photo? %>
     <%= image_tag(challenge.photo, style:"width: 100%") %>
+  <br>
+    
   <% end %>
   <% if challenge.movie? %>
     <%= video_tag(challenge.movie, controls: true, type: 'video/mp4' , style:"width:100%") %>
-  <%end %>
   <br>
+
+  <%end %>
   <span><%= challenge.get_upvotes.size %></span>
   <% if current_user.voted_for? challenge %>
     <span><%= link_to "Unvote", unvote_challenge_path(challenge), method: :put %></span>
