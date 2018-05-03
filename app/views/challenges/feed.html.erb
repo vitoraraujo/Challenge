@@ -13,13 +13,8 @@
 
 <section class="search_bar">
   <%= image_tag "searchicon.png", class: "col-xs-3" %>
-<<<<<<< HEAD:app/views/challenges/feed.html.erb
-    <%= form_tag "/users/search", class: "col-xs-9" do %>
-      <%= text_field_tag :name %>
-=======
   <%= form_tag "/challenges/search", class: "col-xs-9", autocomplete: 'off' do %>
     <%= text_field_tag :content %>
->>>>>>> 44eaf8ff913b3046dbefabb185c2f751aa525ab6:app/views/challenges/feed.html.erb
   <% end %>
 </section>
 

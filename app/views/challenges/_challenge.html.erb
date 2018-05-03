@@ -5,24 +5,12 @@
   <span><%= challenge.content %></span>
   <br>
   <% if challenge.photo? %>
-    <br>
     <%= image_tag(challenge.photo, style:"width: 100%") %>
-<<<<<<< HEAD
-  <br>
-    
-=======
     <br>
->>>>>>> 44eaf8ff913b3046dbefabb185c2f751aa525ab6
   <% end %>
   <% if challenge.movie? %>
-    <br>
     <%= video_tag(challenge.movie, controls: true, type: 'video/mp4' , style:"width:100%") %>
-<<<<<<< HEAD
-  <br>
-
-=======
     <br>
->>>>>>> 44eaf8ff913b3046dbefabb185c2f751aa525ab6
   <%end %>
   <span><%= challenge.get_upvotes.size %></span>
   <% if current_user.voted_for? challenge %>
