@@ -7,6 +7,16 @@ class ChallengesController < ApplicationController
     render template: "challenges/index" 
   end
 
+  def feed
+    if logged_in?
+      @challenge = current_user.challenges.build
+      @feed_items = current_user.feed
+      @global_feed_items = current_user.global_feed
+    else
+      redirect_to login_url
+    end
+  end
+
   # GET /challenges
   # GET /challenges.json
   def index

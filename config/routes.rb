@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  get '/feed', to: 'users#feed'
-
+  get    '/feed',    to: 'challenges#feed'
   get    'sessions/new'
   get    '/signup',  to: 'users#new'
   get    '/login',   to: 'sessions#new'
@@ -20,6 +19,8 @@ Rails.application.routes.draw do
 
   resources :challenges do
     resources :comments, only: [:create, :destroy]
+    resources :dones, only: [:create, :destroy]
+    
   end
 
   resources :challenges do
@@ -29,10 +30,18 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :dones do
+    member do
+      put 'like'   => "dones#like"
+      put 'unvote' => "dones#unvote"
+    end
+  end
+
+  resources :dones
   resources :challenges
   resources :users
   resources :comments
   resources :relationships, only: [:create, :destroy]
   
-  root 'users#feed'
+  root 'challenges#feed'
 end

@@ -12,10 +12,10 @@
 </div>
 
 <section class="search_bar">
-	<%= image_tag "searchicon.png", class: "col-xs-3 col-md-6" %>
-	<%= form_tag "/challenges/search" do %>
-  		<%= text_field_tag :content %>
-	<% end %>
+  <%= image_tag "searchicon.png", class: "col-xs-3" %>
+  <%= form_tag "/challenges/search", class: "col-xs-9", autocomplete: 'off' do %>
+    <%= text_field_tag :content %>
+  <% end %>
 </section>
 
 <table align="center">

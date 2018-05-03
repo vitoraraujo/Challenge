@@ -11,9 +11,24 @@
   <%end %>
   <br>
 <p style="float: right;">by:<%= link_to @challenge.user.name, @challenge.user %></p> 
-
-
-
+<br>
+<h4>Done Challenges:</h4>
+<% if @challenge.dones.any? %>
+	<%= render @challenge.dones %>
+<% end %>
+<br>
+<% if logged_in? %>
+	<%= form_for ([@challenge, @challenge.dones.build]), html: {multipart: true} do |f| %>
+		<div class="field">
+		  	<%= f.label :photo %><br>
+		  	<%= f.file_field :photo, class: 'form_control' %>
+		  	
+		  	<%= f.label :movie %><br>
+		  	<%= f.file_field :movie, class: 'form_control' %>
+	  	</div>
+		<%= f.submit "Cumprir desafio!" %>
+	<% end %>
+<% end %>
 <br>
 <h4> Comments: </h4>
 <% if @challenge.comments.any? %>
