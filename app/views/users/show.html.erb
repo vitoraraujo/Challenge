@@ -4,7 +4,7 @@
 
 <section class="search_bar">
   <%= image_tag "searchicon.png", class: "col-xs-3" %>
-    <%= form_tag "/users/search", class: "col-xs-9", autocomplete: 'off' do %>
+  <%= form_tag "/users/search", class: "col-xs-9", autocomplete: 'off' do %>
       <%= text_field_tag :name %>
   <% end %>
 </section>

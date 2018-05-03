@@ -2,6 +2,16 @@ class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy, :like, :unvote]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
+  def feed
+    if logged_in?
+      @challenge = current_user.challenges.build
+      @feed_items = current_user.feed
+      @global_feed_items = current_user.global_feed
+    else
+      redirect_to login_url
+    end
+  end
+
   def search
     @challenges = Challenge.where("content LIKE ?", "%#{params[:content]}%")
     render template: "challenges/index" 

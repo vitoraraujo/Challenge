@@ -4,13 +4,14 @@
 			<%= link_to current_user do %>
 				<%= image_tag "usuario.png", class: "col-xs-2 header-img-buttom" %>
 			<% end %>
+			<%= image_tag "vido.png", class: "col-xs-4 col-xs-offset-2 vido" %>
 			<%= link_to feed_path do %>
 				<%= image_tag "terra.png", style: "float: right", class: "col-xs-2 header-img-buttom" %>
 			<% end %>
 	  	<%else%>
-	  		Vido
+	  		<%= image_tag "vido.png", class: "col-xs-4 col-xs-offset-4 vido" %>
 	  	<% end %>
-	</div>
+</div>
 </header>
 
 
