@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   resources :challenges do
     resources :comments, only: [:create, :destroy]
+    resources :dones, only: [:create, :destroy]
+    
   end
 
   resources :challenges do
@@ -28,6 +30,14 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :dones do
+    member do
+      put 'like'   => "dones#like"
+      put 'unvote' => "dones#unvote"
+    end
+  end
+
+  resources :dones
   resources :challenges
   resources :users
   resources :comments

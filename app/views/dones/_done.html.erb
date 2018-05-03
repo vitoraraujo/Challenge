@@ -1,0 +1,25 @@
+<p style="border: 1px solid black; border-color: black; padding: 5px;" >
+  <%= link_to gravatar_for(done.user, size: 30), done.user %>
+  <span><%= link_to done.user.name, done.user %></span>
+  <br>
+  <% if done.photo? %>
+    <br>
+    <%= image_tag(done.photo, style:"width: 100%") %>
+    <br>
+  <% end %>
+  <% if done.movie? %>
+    <br>
+    <%= video_tag(done.movie, controls: true, type: 'video/mp4' , style:"width:100%") %>
+    <br>
+  <%end %>
+  <span><%= done.get_upvotes.size %></span>
+  <% if current_user.voted_for? done %>
+    <span><%= link_to "Unvote", unvote_done_path(done), method: :put %></span>
+  <% else %>
+    <span><%= link_to "Like", like_done_path(done), method: :put %></span>
+  <% end %>
+  <br>
+  <span style="font-size: 10px">
+    Done <%= time_ago_in_words(done.created_at) %> ago.
+  </span>
+</p>

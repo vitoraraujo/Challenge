@@ -4,7 +4,11 @@
 
 <section class="search_bar">
   <%= image_tag "searchicon.png", class: "col-xs-3" %>
+<<<<<<< HEAD
     <%= form_tag "/users/search", class: "col-xs-9" do %>
+=======
+    <%= form_tag "/users/search", class: "col-xs-9", autocomplete: 'off' do %>
+>>>>>>> 44eaf8ff913b3046dbefabb185c2f751aa525ab6
       <%= text_field_tag :name %>
   <% end %>
 </section>

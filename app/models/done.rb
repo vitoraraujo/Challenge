@@ -1,11 +1,9 @@
-class Challenge < ApplicationRecord
+class Done < ApplicationRecord
+	belongs_to :challenge
 	belongs_to :user
-	has_many :comments, dependent: :destroy
-	has_many :dones, dependent: :destroy
 
 	validates :user_id, presence: true
-	validates :content, presence: true, length: { maximum: 100 }
-	default_scope -> { order(created_at: :desc) }
+	validates :challenge_id, presence: true
 
 	#For photo - special characeters \A, \z
 	has_attached_file :photo, styles: {large:"450x450>", thumb: "50x50#"}
