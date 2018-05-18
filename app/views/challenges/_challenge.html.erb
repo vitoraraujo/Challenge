@@ -3,9 +3,8 @@
   <span><%= link_to challenge.user.name, challenge.user %></span>
   <br>
   <span><%= challenge.content %></span>
-  <br>
   <% if challenge.photo? %>
-    <%= image_tag(challenge.photo, style:"width: 100%") %>
+    <%= image_tag(challenge.photo, style:"width: 100%;") %>
     <br>
   <% end %>
   <% if challenge.movie? %>

@@ -1,20 +1,25 @@
-<div style="border: 0.5px solid gray; padding: 10px;">
+<div class="row" style="margin-top: 5%;">
     <%= form_for :challenge, url: challenges_path, html: {multipart: true} do |f| %>
-  <div class="field">
-    <%= f.text_area :content, placeholder: "New challenge..." %>
-  	<%= f.label :photo %><br>
-  	<%= f.file_field :photo, class: 'form_control' %>
-  	<%= f.label :movie %><br>
-  	<%= f.file_field :movie, class: 'form_control' %>
+  <div class="com-xs-12">
+
+    
+    <%= f.text_area :content, placeholder: "New challenge...", class: "col-xs-12" %>
+  <div class="image-upload col-xs-6">
+    <label for="file-input">
+     <span class="glyphicon glyphicon-camera"></span>
+    </label>
+
+    <%= f.file_field :photo, id:"file-input" %>
+    </div>
   </div>
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  <%= f.submit "Post", class: "btn btn-primary col-xs-6" %>
 <% end %>
 </div>
 
 <section class="search_bar">
   <%= image_tag "searchicon.png", class: "col-xs-3" %>
-  <%= form_tag "/challenges/search", class: "col-xs-9", autocomplete: 'off' do %>
-    <%= text_field_tag :content %>
+  <%= form_tag "/challenges/search", autocomplete: 'off' do %>
+    <%= text_field_tag :content, params[:content], size: 150, placeholder:"Desafio" , class: "col-xs-9", style: "margin-top:2.8%;"%>
   <% end %>
 </section>
 

@@ -2,7 +2,7 @@
 @import "bootstrap";
 
 body {
-  
+
 }
 
 table {
@@ -23,33 +23,6 @@ textarea {
 
 .center h1 {
   margin-bottom: 10px;
-}
-
-/* typography */
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-}
-
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: #777;
-}
-
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
 }
 
 /* header */
@@ -79,7 +52,11 @@ main {
   padding: 3%;
 }
 
-/* forms */
+.search_bar {
+  margin: 5%;
+  
+}
+/* forms
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
@@ -89,19 +66,21 @@ input, textarea, select, .uneditable-input {
 input {
   height: auto !important;
 }
-
-.search_bar {
-  margin: 5%;
-  
-}
-
 input[type=search]{
   width: 70%
-}
-
+}*/
 /* User */
 
 .user-name {
   margin-left: 5%;
   font-size: large;
 } 
+
+/* file upload */
+.image-upload > input
+{
+   display: none;
+}
+.image-upload > label{
+  cursor:pointer;
+}
