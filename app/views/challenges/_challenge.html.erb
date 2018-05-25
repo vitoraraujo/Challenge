@@ -11,11 +11,10 @@
     <%= video_tag(challenge.movie, controls: true, type: 'video/mp4' , style:"width:100%") %>
     <br>
   <%end %>
-  <span><%= challenge.get_upvotes.size %></span>
   <% if current_user.voted_for? challenge %>
-    <span><%= link_to "Unvote", unvote_challenge_path(challenge), method: :put %></span>
+    <span><%= link_to pluralize(challenge.get_upvotes.size, "Clap"), unvote_challenge_path(challenge), method: :put %></span>
   <% else %>
-    <span><%= link_to "Like", like_challenge_path(challenge), method: :put %></span>
+    <span><%= link_to pluralize(challenge.get_upvotes.size, "Clap"), like_challenge_path(challenge), method: :put %></span>
   <% end %>
   <span><%= link_to pluralize(challenge.comments.count, "comment"), challenge %></span>
   <span><%= link_to pluralize(challenge.dones.count, "Done"), challenge %></span>

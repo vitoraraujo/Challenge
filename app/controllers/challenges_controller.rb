@@ -48,6 +48,7 @@ class ChallengesController < ApplicationController
   def create
     @challenge = current_user.challenges.build(challenge_params)
     if @challenge.save
+      flash[:success] = "Desafio proposto!"
       redirect_to feed_path
     else
       render :new

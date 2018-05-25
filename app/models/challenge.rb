@@ -4,7 +4,7 @@ class Challenge < ApplicationRecord
 	has_many :dones, dependent: :destroy
 
 	validates :user_id, presence: true
-	validates :content, presence: true, length: { maximum: 100 }
+	validates :content, presence: true, length: { maximum: 100 }, uniqueness: { case_sensitive: false}
 	default_scope -> { order(created_at: :desc) }
 
 	#For photo - special characeters \A, \z
