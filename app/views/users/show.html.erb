@@ -2,65 +2,84 @@
 
 <% provide(:title, @user.name) %>
 
-<section class="search_bar">
-  <%= image_tag "searchicon.png", class: "col-xs-3" %>
-  <%= form_tag "/users/search", class: "col-xs-9", autocomplete: 'off' do %>
+  <% if logged_in? %>
+  <section class="search_bar col-xs-12 ">
+    <article class="col-xs-4 col-xs-pull-2">
+      <%= image_tag "searchicon.png", class: "col-xs-12" %>
+    </article>
+    <article class="col-xs-6 col-xs-pull-4">
+      <%= form_tag "/users/search", class: "col-xs-12", autocomplete: 'off' do %>
       <%= text_field_tag :name %>
+    </article>
+   <article class="col-xs-2 col-xs-pull-2">
+      <%= link_to "Settings", edit_user_path, style: "float:right; ", class: "glyphicon glyphicon-cog col-xs-12" %>
+   </article>
+        
+  </section>
   <% end %>
-</section>
-<br>
-<section>
-  <%= gravatar_for @user %>
-
-  <span class="user-name"><%= @user.name %></span>
-
-</section>
-
 
 <br>
-<% if logged_in? %>
+
+  <section class="col-xs-12">
+  
+  <article class="col-xs-4">
+    <%= gravatar_for @user %>
+  </article>
+  <article class="col-xs-8">
+    <span class="user-name col-xs-12"><%= @user.name %></span>
   <% unless current_user?(@user) %>
     <% if current_user.following?(@user) %>
       <%= form_for(current_user.active_relationships.find_by(followed_id: @user.id),
                    html: { method: :delete }) do |f| %>
-        <%= f.submit "Unfollow", class: "btn" %>
+        <%= f.submit "Unfollow", class: "btn col-xs-12" %>
       <% end %>
     <% else %>
       <%= form_for(current_user.active_relationships.build) do |f| %>
         <div><%= hidden_field_tag :followed_id, @user.id %></div>
-        <%= f.submit "Follow", class: "btn btn-primary" %>
+        <%= f.submit "Follow", class: "btn btn-primary col-xs-12" %>
       <% end %>
     <% end %>
   <% else %>
-      <%= link_to "Settings", edit_user_path %>
-      <%= button_to "Logout", logout_path, method: :delete %>
+      <%= button_to "Logout", logout_path, method: :delete, class: "col-xs-12 btn" %>
   <% end %>
+</article>
+</section>
 <% end %>
-
 <br>
-<div style="float: left;">
-    <h4>Challenges: </h4>
-  <p>
-    <strong>Done: </strong>     
-    <%= link_to @user.dones.count  %>
-
-  </p>
-  <p>
-    <strong>Writen:</strong>
-    <%= link_to @user.challenges.count  %>
-  </p>
-</div>
-<div style="float: right;">
-  <h4> Social: </h4>
-<p>
-  <strong> Followers: </strong>
-    <%= link_to @user.followers.count, followers_user_path(@user) %>
-</p>
-<p>
-  <strong> Following: </strong>
-  <%= link_to @user.following.count, following_user_path(@user) %>
-</p>
-</div>
+  <section class="col-xs-6">
+    <article class="col-xs-12">
+      <h4 style="text-align: center;">Challenges: </h4>
+    </article>  
+    <article class="col-xs-6">
+      <h6>
+        Done:   
+        <%= link_to @user.dones.count %>
+      </h6>
+    </article>
+    <article class="col-xs-6">
+      <h6>
+        Writen:
+        <%= link_to @user.challenges.count  %>
+      </h6>
+    </article>
+  </section>
+  <section class="col-xs-6">
+    <article class="col-xs-12">
+      <h4 style="text-align: center;"> Social: </h4>
+    </article>
+    <article align="center" class="col-xs-6">
+      <h6>
+        Followers:
+        <%= link_to @user.followers.count, followers_user_path(@user) %>
+      </h6>
+    </article>
+    <article align="center" class="col-xs-6">
+      <h6>
+        Following:
+        <%= link_to @user.following.count, following_user_path(@user) %>
+      </h6>
+    </article>
+</section>
 <div class="col-xs-12">
 <% if @user.challenges.any? %>
   <h3>Challenges (<%= @user.challenges.count %>)</h3>
